@@ -1,28 +1,35 @@
 use Test;
 
-BEGIN plan 2;
+BEGIN plan 3;
 
 use Game::IgelÄrgern;
 use Game::IgelÄrgern::Player;
 use Game::IgelÄrgern::Exception;
 
+sub g(|a) { Game::IgelÄrgern.new(|a) }
+sub p($name) { Game::IgelÄrgern::Player.new(name => $name) }
+
 
 {
-    my $game = Game::IgelÄrgern.new();
-    throws_like { $game.start },
+    throws_like { g.start },
         X::Game::IgelÄrgern::PlayerCount,
         count => 0,
     ;
 }
 
 {
-    my $game = Game::IgelÄrgern.new();
-    $game.add-player(Game::IgelÄrgern::Player.new(name => 'Flo'));
+    my $game = g;
+    $game.add-player(p 'Flo');
     throws_like {
-            $game.add-player(Game::IgelÄrgern::Player.new(name => 'Flo'))
+            $game.add-player(p 'Flo');
         },
         X::Game::IgelÄrgern::PlayerNameClash,
         clash => 'Flo',
         ;
-
 };
+
+{
+    my $game = g;
+    $game.add-player(p $_) for <Flo Annika Moritz>;
+    lives_ok { $game.start }, 'can start a game with three different players';
+}
