@@ -1,3 +1,5 @@
+See http://doris-frank.de/GamesIgel.html for the offical website.
+
 "Igel Ärgern" is a German board game, sometimes translated with "hedgehogs in
 a hurry". It is played by two to six players on a board with six lanes.
 Each player has four pieces depicting hedgehogs.
