@@ -2,11 +2,14 @@ use v6;
 
 use Game::IgelÄrgern::Exception;
 use Game::IgelÄrgern::Player;
+use Game::IgelÄrgern::Board;
 
 class Game::IgelÄrgern {
     has @!players;
     has $!current-player-index;
     has Range $.permissible-player-count = 2..6;
+
+    has Game::IgelÄrgern::Board $.board = Game::IgelÄrgern::Board.new();
 
     method start {
         self!validate-at-startup;
