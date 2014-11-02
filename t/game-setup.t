@@ -1,6 +1,6 @@
 use Test;
 
-BEGIN plan 4;
+BEGIN plan 5;
 
 use Game::IgelÄrgern;
 use Game::IgelÄrgern::Player;
@@ -43,4 +43,5 @@ sub p($name) { Game::IgelÄrgern::Player.new(name => $name) }
         ......
         SSSSSS
         BOARD
+    dies_ok { $game.start }, 'Cannot start an already-stared game';
 }
